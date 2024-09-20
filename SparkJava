@@ -1,0 +1,29 @@
+import spark.Route;
+import spark.Spark;
+
+// ... (importações de outras classes)
+
+public class App {
+    public static void main(String[] args) {
+        Spark.port(8080);
+
+        // Rota para exibir o formulário
+        Spark.get("/", (req, res) -> {
+            // Retorna o conteúdo do arquivo HTML
+            return "seu_formulario.html";
+        });
+
+        // Rota para salvar os dados do produto
+        Spark.post("/produto", (req, res) -> {
+            // Obter os dados do formulário
+            String nome = req.queryParams("nome");
+            String descricao = req.queryParams("descricao");
+            // ... (obter outros dados)
+
+            // Salvar os dados no banco de dados
+            // ... (utilizar JDBC para inserir os dados)
+
+            return "Produto cadastrado com sucesso!";
+        });
+    }
+}
